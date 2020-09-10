@@ -1,3 +1,6 @@
+
+@import './variables';
+
 // reset
 *{
     box-sizing: border-box;
@@ -19,25 +22,7 @@ a{
    color: #999;
 }
 
-// colors
-$colors:(
-    "primary":#db9e3f,
 
-    "white":#fff,
-
-    "light":#f9f9f9,
-
-    "black":#000,
-
-    "dark":#222,
-
-    "dark-1":#343440,
-
-    "dark-2":#666,
-
-    "grey":#999,
-
-);
 @each $colorKey, $color in $colors {
     .text-#{$colorKey}{
         color:$color
@@ -51,20 +36,11 @@ $colors:(
 // text align
 @each $var in (left, center, right) {
     .text-#{$var}{
-        text-align: $var;
+        text-align: $var !important;
     }
 }
 
-//font size
-$base-font-size:1rem;
-$font-sizes:(
-    xss:0.6154,//8px
-    xs:0.7692, //10px
-    sm:0.9231, //12px
-    md:1, //13px
-    lg:1.0769, //14px
-    xl:1.2308, //16px
-);
+
 
 
 @each $sizeKey,$size in $font-sizes {
@@ -101,15 +77,11 @@ $font-sizes:(
 .flex-column{
     flex-direction: column;
 }
+.flex-wrap{
+    flex-wrap: wrap;
+}
 
-//justify-content
-$flex-jc:(
-    start:flex-start,
-    end:flex-end,
-    center:center,
-    between:space-between,
-    around:space-around,
-);
+
 
 @each $key,$value in $flex-jc {
     .jc-#{$key}{
@@ -117,13 +89,7 @@ $flex-jc:(
     }
 }
 
-//align-items
-$flex-ai:(
-    start:flex-start,
-    end:flex-end,
-    center:center,
-    stretch:stretch,
-);
+
 
 @each $key,$value in $flex-ai {
     .ai-#{$key}{
@@ -138,27 +104,7 @@ $flex-ai:(
     flex-grow: 1;
 }
 
-//spacing
-//.mt-1 =>margin top
-$spacing-types:(
-    m:margin,
-    p:padding,
-);
-$spacing-directions:(
-    t:top,
-    r:right,
-    b:bottom,
-    l:left,
-);
-$spacing-base-size:1rem;
-$spacing-sizes:(
-    0:0,
-    1:0.25,
-    2:0.5,
-    3:1,
-    4:1.5,
-    5:3,
-);
+
 @each $typeKey,$type in $spacing-types {
 
     //.m-1{margin-top:0.25rem}
@@ -206,13 +152,42 @@ $spacing-sizes:(
 
 //nav
 .nav{
+    display: flex;
     .nav-item{
         // border: 2px solid transparent;
         padding-bottom: 0.2rem;
         &.active{
-        
-            border-bottom:3px solid #fff ;
+            color:map-get($colors, 'primary');
+            border-bottom:3px solid map-get($colors, 'primary') ;
+        }
+    }
+
+    &.nav-inverse{
+        .nav-item{
+            color:map-get($colors, 'white' );
+            &.active{
+                border-bottom:3px solid map-get($colors, 'white') ;
+            }
+            
         }
     }
     
 }
+
+// sprite
+.sprite{
+    background: url(../sprite/index.png) no-repeat 0 0;
+    background-size: 28.8462rem;
+    display: inline-block;
+    &.sprite-news{
+        width: 1.7692rem;
+        height: 1.5385rem;
+        background-position: 63.546% 15.517%;
+
+    }
+    &.sprite-arrow{
+        width: 0.7692rem;
+        height: 0.7692rem;
+        background-position: 38.577% 52.076%;
+    }
+  }
