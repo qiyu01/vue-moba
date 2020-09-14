@@ -22,6 +22,7 @@ import ListCard from './components/ListCard.vue'
 Vue.component('m-list-card',ListCard)
 
 import axios from 'axios'
+import './plugins/element.js'
 Vue.prototype.$http=axios.create({
   baseURL:"http://localhost:3000/web/api"
 })

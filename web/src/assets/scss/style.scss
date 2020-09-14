@@ -22,6 +22,9 @@ a{
    color: #999;
 }
 
+p{
+    line-height: 1.5rem;
+}
 
 @each $colorKey, $color in $colors {
     .text-#{$colorKey}{
@@ -70,9 +73,14 @@ a{
     display: inline-block;
 }
 
+
+
 //width
 .w-100{
     width: 100%;
+}
+.w-50{
+    width: 50%;
 }
 .h-100{
     height: 100%;
@@ -198,4 +206,12 @@ a{
         height: 0.7692rem;
         background-position: 38.577% 52.076%;
     }
+  }
+
+
+  //borders
+  @each $dir in (top,right,bottom, left) {
+      .border-#{$dir}{
+          border-#{$dir}:1px solid $border-color;
+      }
   }
