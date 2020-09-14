@@ -21,6 +21,9 @@ Vue.component('m-card',Card)
 import ListCard from './components/ListCard.vue'
 Vue.component('m-list-card',ListCard)
 
+import MiniCard from './components/MiniCard.vue'
+Vue.component('mini-card',MiniCard)
+
 import axios from 'axios'
 import './plugins/element.js'
 Vue.prototype.$http=axios.create({

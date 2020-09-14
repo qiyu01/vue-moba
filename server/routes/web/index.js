@@ -140,7 +140,14 @@ router.get('/heroes/list',async (req,res) =>{
 
 // 英雄详情
     router.get('/heroes/:id', async (req,res) =>{
-        const data = await Hero.findById(req.params.id).populate('categories').lean()
+        const data = await Hero.findById(req.params.id).populate('categories').populate('items1').populate('items2').populate({
+            path: 'partners',
+            populate: {
+                path: 'hero',
+                select: '_id name avatar',
+                model: 'Hero'
+            }
+        }).lean()
         res.send(data)
     })
 

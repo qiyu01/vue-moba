@@ -15,15 +15,31 @@
     </swiper>
   <!-- end of swiper -->
     <div class="nav-icons bg-white mt-3  text-center pt-3 text-dark-1">
-      <div class="d-flex flex-wrap">
-        <div class="nav-item mb-3" v-for="n in 10" :key="n">
+      <div class="nav-wrapper d-flex flex-wrap" :class="{fold:folded}">
+        <div class="nav-item mb-3">
         <i class="sprite sprite-news"></i>
         <div class="py-2">爆料站</div>
         </div>
+        <div class="nav-item mb-3">
+        <i class="sprite sprite-story"></i>
+        <div class="py-2">故事站</div>
+        </div>
+        <div class="nav-item mb-3">
+        <i class="sprite sprite-shop"></i>
+        <div class="py-2">周边商城</div>
+        </div>
+        <div class="nav-item mb-3">
+        <i class="sprite sprite-exp"></i>
+        <div class="py-2">体验服</div>
+        </div>
+        <div class="nav-item mb-3" v-for="n in 8" :key="n">
+        <i class="sprite sprite-des"></i>
+        <div class="py-2">版本介绍</div>
+        </div>
       </div>
-      <div class="bg-light py-2 fs-sm">
-        <i class="sprite sprite-arrow mr-1"></i>
-        <span>收起</span>
+      <div class="bg-light py-2 fs-sm" @click="folded=!folded">
+        <i class="sprite sprite-arrow mr-1" :class="{fold:folded}"></i>
+        <span>{{folded?'展开':'收起'}}</span>
       </div>
       
     </div>
@@ -48,7 +64,7 @@
     <m-list-card icon="card-hero" title="英雄列表" :categories="heroCats">
       <template #items="{category}">
         <div class="d-flex flex-wrap" style="margin:0 -0.5rem;">
-          <router-link tag="div" :to="`/heroes/${hero._id}`" class="p-2 text-center" style="width:20%;" v-for="(hero,i) in category.heroList" :key="i">
+          <router-link tag="div" :to="`/heroes/5f5c30f60817533ff085aeef`" class="p-2 text-center" style="width:20%;" v-for="(hero,i) in category.heroList" :key="i">
               <img :src="hero.avatar" alt="" class="w-100">
               <div>{{hero.name}}</div>
           </router-link>
@@ -59,23 +75,8 @@
     </m-list-card>
 
     <!-- end of card-hero -->
-    <m-card icon="card-hero" title="英雄列表"></m-card>
     <m-card icon="news" title="精彩视频"></m-card>
     <m-card icon="news" title="图文攻略"></m-card>
-
-
-
-
-
-  <p>aaaaaa</p>
-  <p>aaaaaa</p>
-  <p>aaaaaa</p>
-  <p>aaaaaa</p>
-  <p>aaaaaa</p>
-  <p>aaaaaa</p>
-  <p>aaaaaa</p>
-  <p>aaaaaa</p>
-  <p>aaaaaa</p>
   </div>
 </template>
 
@@ -89,7 +90,10 @@ export default {
   },
   data() {
     return {
+      folded:true,
       swiperOptions: {
+          autoplay:true,
+          loop : true,
           pagination: {
             el: '.pagination-home'
           }
@@ -117,7 +121,16 @@ export default {
 
 <style lang="scss">
 @import  '../assets/scss/variables';
-  .pagination-home{
+.home{
+  .nav-icons{
+    .nav-wrapper{
+      overflow: hidden;
+      &.fold{
+      height: 62px;
+      }
+    }
+  }
+  .pagination-home{           
     .swiper-pagination-bullet{
       opacity: 1;
       border-radius: 0.1538rem;
@@ -139,6 +152,11 @@ export default {
       }
     }
   }
+
+
+}
+
+  
 
   
 </style>
